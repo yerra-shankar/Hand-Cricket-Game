@@ -24,6 +24,4 @@ In this game, you pick a number and the computer picks one too just like playing
 ## 🌐 Live Demo
 👉 [Play Now](https://shankar-hand-cricket.netlify.app/)
 
----
-
 ✨ Have fun and enjoy the nostalgia of hand cricket!
