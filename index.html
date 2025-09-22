@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Cricket Game</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <!-- Game Header -->
+            <div class="game-header">
+                <h1 class="mb-0">🏏 Hand Cricket Game</h1>
+                <p class="mb-0 mt-2">Player vs System</p>
+            </div>
+            
+            <div class="p-4">
+                <!-- Toss Phase -->
+                <div id="tossPhase" class="game-phase">
+                    <h3 class="phase-title">🪙 Toss Phase</h3>
+                    <div class="text-center">
+                        <p class="lead">Choose Odd or Even for the toss:</p>
+                        <button class="btn btn-primary btn-custom me-3" onclick="chooseTossOption('odd')">Odd</button>
+                        <button class="btn btn-success btn-custom" onclick="chooseTossOption('even')">Even</button>
+                    </div>
+                    
+                    <div id="tossChoice" class="mt-4" style="display: none;">
+                        <div class="alert alert-info text-center">
+                            <p class="mb-2">You chose: <strong id="playerTossChoice"></strong></p>
+                            <button class="btn btn-warning btn-custom" onclick="performToss()">Toss Numbers!</button>
+                        </div>
+                    </div>
+                    
+                    <div id="tossResult" class="mt-4" style="display: none;">
+                        <div class="ball-result text-center">
+                            <h5>Toss Result:</h5>
+                            <p>Your number: <strong id="playerTossNumber"></strong></p>
+                            <p>System number: <strong id="systemTossNumber"></strong></p>
+                            <p>Total: <strong id="tossTotal"></strong> (<span id="tossOddEven"></span>)</p>
+                            <p class="text-success fw-bold" id="tossWinner"></p>
+                        </div>
+                        
+                        <div id="batBowlChoice" class="text-center mt-3" style="display: none;">
+                            <p class="lead">You won the toss! Choose:</p>
+                            <button class="btn btn-primary btn-custom me-3" onclick="chooseInningsOption('bat')">Bat</button>
+                            <button class="btn btn-success btn-custom" onclick="chooseInningsOption('bowl')">Bowl</button>
+                        </div>
+                        
+                        <div id="systemChoice" class="text-center mt-3" style="display: none;">
+                            <p class="text-warning">System won the toss and chose to <strong id="systemInningsChoice"></strong> first.</p>
+                            <button class="btn btn-info btn-custom" onclick="startMatch()">Start Match</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Match Phase -->
+                <div id="matchPhase" class="game-phase" style="display: none;">
+                    <h3 class="phase-title">🏏 Match in Progress</h3>
+                    
+                    <!-- Score Board -->
+                    <div class="score-board">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Player Score: <span class="text-primary" id="playerScore">0</span></h5>
+                                <p class="mb-0">Balls faced: <span id="playerBalls">0</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>System Score: <span class="text-success" id="systemScore">0</span></h5>
+                                <p class="mb-0">Balls faced: <span id="systemBalls">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Batsman Info -->
+                    <div class="current-batsman text-center">
+                        <h5 id="currentBatsmanInfo">Player is batting</h5>
+                        <p class="mb-0">Target: <span id="targetScore">-</span></p>
+                    </div>
+                    
+                    <!-- Ball Result Display -->
+                    <div id="ballResultDisplay" class="ball-result" style="display: none;">
+                        <div class="text-center">
+                            <h6>Last Ball:</h6>
+                            <p>Your choice: <strong id="lastPlayerChoice"></strong></p>
+                            <p>System choice: <strong id="lastSystemChoice"></strong></p>
+                            <p class="fw-bold" id="ballOutcome"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Number Selection -->
+                    <div class="text-center">
+                        <p class="lead">Choose your number (1-10):</p>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(1)">1</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(2)">2</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(3)">3</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(4)">4</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(5)">5</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(6)">6</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(7)">7</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(8)">8</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(9)">9</button>
+                            <button class="btn btn-outline-primary number-btn" onclick="playBall(10)">10</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result Phase -->
+                <div id="resultPhase" class="game-phase" style="display: none;">
+                    <h3 class="phase-title">🏆 Match Result</h3>
+                    
+                    <div class="score-board">
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <h4>Player</h4>
+                                <h3 class="text-primary" id="finalPlayerScore">0</h3>
+                                <p>in <span id="finalPlayerBalls">0</span> balls</p>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <h4>System</h4>
+                                <h3 class="text-success" id="finalSystemScore">0</h3>
+                                <p>in <span id="finalSystemBalls">0</span> balls</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="winner-announcement" id="matchWinner">
+                        Result will appear here
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-custom btn-lg" onclick="restartGame()">Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

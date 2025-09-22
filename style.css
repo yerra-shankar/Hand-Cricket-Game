@@ -1,0 +1,93 @@
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);s */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px black;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.game-header {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.number-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.number-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.score-board {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid #007bff;
+}
+
+.current-batsman {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.ball-result {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.winner-announcement {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.phase-title {
+    color: #495057;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-custom {
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
